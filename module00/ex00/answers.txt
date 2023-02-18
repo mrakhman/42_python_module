@@ -1,0 +1,11 @@
+# Output a list of installed packages and their versions:
+conda list
+
+# Show the package metadata of numpy
+pip show numpy
+
+# Remove the package numpy
+pip uninstall numpy
+
+# (Re)install the package numpy
+pip install numpy
