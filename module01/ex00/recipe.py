@@ -1,13 +1,10 @@
-import sys
-from pprint import pprint
-
 # Input validation functions
 def is_valid_recipe(name, cooking_lvl, cooking_time, ingredients, description, recipe_type):
     def is_valid_name(name):
         if not isinstance(name, str) or name == "":
             print("Error: name must be a string, not empty")
             return False
-        return name
+        return True
 
     def is_valid_cooking_lvl(cooking_lvl):
         if not isinstance(cooking_lvl, int) or isinstance(cooking_lvl, bool):
@@ -16,7 +13,7 @@ def is_valid_recipe(name, cooking_lvl, cooking_time, ingredients, description, r
         if not (cooking_lvl >= 1 and cooking_lvl <= 5):
             print("Error: cooking_lvl must be an integer from 1 to 5")
             return False
-        return cooking_lvl
+        return True
 
     def is_valid_cooking_time(cooking_time):
         if not isinstance(cooking_time, int) or isinstance(cooking_time, bool):
@@ -25,28 +22,28 @@ def is_valid_recipe(name, cooking_lvl, cooking_time, ingredients, description, r
         if cooking_time < 0:
             print("Error: cooking_time must be a positive integer")
             return False
-        return cooking_time
+        return True
 
     def is_valid_ingredients(ingredients):
         if not isinstance(ingredients, list) or len(ingredients) == 0 or not all(isinstance(ingredient, str) for ingredient in ingredients):
             print("Error: ingredients must be a list of strings")
             return False
-        return ingredients
+        return True
 
     def is_valid_description(description):
         if description == None or description == "":
-            return "No description"
+            return True
         if not isinstance(description, str):
             print("Error: description must be a string")
             return False
-        return description
+        return True
 
     def is_valid_recipe_type(recipe_type):
         recipe_types = ("starter", "lunch", "dessert")
         if not recipe_type in recipe_types:
             print("Error: recipe_type must be starter, lunch or dessert")
             return False
-        return recipe_type
+        return True
 
 
     if not is_valid_name(name) \
@@ -69,34 +66,35 @@ class Recipe:
                  description,
                  recipe_type):
         if is_valid_recipe(name, cooking_lvl, cooking_time, ingredients, description, recipe_type):
-            self.name = name
-            self.cooking_lvl = cooking_lvl
-            self.cooking_time = cooking_time
-            self.ingredients = ingredients
-            self.description = description
-            self.recipe_type = recipe_type
+            self._name = name
+            self._cooking_lvl = cooking_lvl
+            self._cooking_time = cooking_time
+            self._ingredients = ingredients
+            self._description = description
+            self._recipe_type = recipe_type
         else:
-            sys.exit()
+            return
 
+    # The __str__ method in Python represents the class objects as a string – it can be used for classes.
+    # This method is also used as a debugging tool when the members of a class need to be checked.
     def __str__(self):
         """Return the string to print with the recipe info"""
         txt = f"""This is the recipe:
-Name: {self.name}
-Cooking level: {self.cooking_lvl}
-Cooking time: {self.cooking_time}
-Ingredients: {', '.join(self.ingredients)}
-Description: {self.description}
-Recipe type: {self.recipe_type}
+Name: {self._name}
+Cooking level: {self._cooking_lvl}
+Cooking time: {self._cooking_time}
+Ingredients: {', '.join(self._ingredients)}
+Description: {self._description}
+Recipe type: {self._recipe_type}
 """
         return txt
 
 
 
-valid_recepie = Recipe('er', 2, 4, ['q', 'p'], None, "starter")
-# pprint(vars(valid_recepie))
-print()
-to_print = str(valid_recepie)
-print(to_print)
+# valid_recipe = Recipe('er', 2, 4, ['q', 'p'], None, "starter")
+# to_print = str(valid_recipe)
+# print(to_print)
+
 
 # invalid_recepie1 = Recipe('', 2, 4, ['q', 'p'], "", "starter")
 # invalid_recepie2 = Recipe('aaa', 0, 4, ['q', 'p'], "", "starter")
