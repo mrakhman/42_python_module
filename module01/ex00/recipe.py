@@ -66,12 +66,12 @@ class Recipe:
                  description,
                  recipe_type):
         if is_valid_recipe(name, cooking_lvl, cooking_time, ingredients, description, recipe_type):
-            self._name = name
-            self._cooking_lvl = cooking_lvl
-            self._cooking_time = cooking_time
-            self._ingredients = ingredients
-            self._description = description
-            self._recipe_type = recipe_type
+            self.name = name
+            self.cooking_lvl = cooking_lvl
+            self.cooking_time = cooking_time
+            self.ingredients = ingredients
+            self.description = description
+            self.recipe_type = recipe_type
         else:
             return
 
@@ -80,12 +80,12 @@ class Recipe:
     def __str__(self):
         """Return the string to print with the recipe info"""
         txt = f"""This is the recipe:
-Name: {self._name}
-Cooking level: {self._cooking_lvl}
-Cooking time: {self._cooking_time}
-Ingredients: {', '.join(self._ingredients)}
-Description: {self._description}
-Recipe type: {self._recipe_type}
+Name: {self.name}
+Cooking level: {self.cooking_lvl}
+Cooking time: {self.cooking_time}
+Ingredients: {', '.join(self.ingredients)}
+Description: {self.description}
+Recipe type: {self.recipe_type}
 """
         return txt
 
