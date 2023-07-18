@@ -90,18 +90,19 @@ Recipe type: {self.recipe_type}
         return txt
 
 
+if __name__ == '__main__':
+    pass
+    # valid_recipe = Recipe('er', 2, 4, ['q', 'p'], None, "starter")
+    # to_print = str(valid_recipe)
+    # print(to_print)
 
-# valid_recipe = Recipe('er', 2, 4, ['q', 'p'], None, "starter")
-# to_print = str(valid_recipe)
-# print(to_print)
 
-
-# invalid_recepie1 = Recipe('', 2, 4, ['q', 'p'], "", "starter")
-# invalid_recepie2 = Recipe('aaa', 0, 4, ['q', 'p'], "", "starter")
-# invalid_recepie3 = Recipe('aaa', 5, 'lala', ['q', 'p'], "", "starter")
-# invalid_recepie4 = Recipe('aaa', 5, 12, ['one', 2], "", "starter")
-# invalid_recepie5 = Recipe('aaa', 5, 12, ['one', 'two'], 5, "starter")
-# invalid_recepie6 = Recipe('aaa', 5, 12, ['one', 'two'], "a b c d", "else")
+    # invalid_recepie1 = Recipe('', 2, 4, ['q', 'p'], "", "starter")
+    # invalid_recepie2 = Recipe('aaa', 0, 4, ['q', 'p'], "", "starter")
+    # invalid_recepie3 = Recipe('aaa', 5, 'lala', ['q', 'p'], "", "starter")
+    # invalid_recepie4 = Recipe('aaa', 5, 12, ['one', 2], "", "starter")
+    # invalid_recepie5 = Recipe('aaa', 5, 12, ['one', 'two'], 5, "starter")
+    # invalid_recepie6 = Recipe('aaa', 5, 12, ['one', 'two'], "a b c d", "else")
 
 
 
