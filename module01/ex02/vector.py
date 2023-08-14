@@ -132,13 +132,38 @@ class Vector:
         self.__sub__(v2)
 
     @_guard_
-    def __truediv__(self):
-        """Division of vector and scalar"""
-        pass
+    def __mul__(self, n):
+        """Multiplication of vector by scalar"""
+        res = copy.deepcopy(self)
+        if isinstance(n, int) or isinstance(n, float):
+            for i in range(len(res.values)):
+                for j in range(len(res.values[0])):
+                    res.values[i][j] = round(res.values[i][j] * n, 8)
+            return res
+        else:
+            raise ValueError("Error: invalid vector for mul operation")
 
     @_guard_
-    def __rtruediv__(self):
-        raise ArithmeticError("Error: can not divide value by vector")
+    def __rmul__(self, n):
+        self.__mul__(n)
+
+    @_guard_
+    def __truediv__(self, n):
+        """Division of vector by scalar"""
+        res = copy.deepcopy(self)
+        if n == 0:
+            raise ArithmeticError("ZeroDivisionError: can not divide vector by zero")
+        if isinstance(n, int) or isinstance(n, float):
+            for i in range(len(res.values)):
+                for j in range(len(res.values[0])):
+                    res.values[i][j] = round(res.values[i][j] / n, 8)
+            return res
+        else:
+            raise ValueError("Error: invalid vector for div operation")
+
+    @_guard_
+    def __rtruediv__(self, n):
+        raise ArithmeticError("NotImplementedError: can not divide value by vector")
         
     @_guard_
     def dot(self, vector2):
@@ -182,7 +207,7 @@ class Vector:
 
         
 if __name__ == '__main__':
-    # pass
+    pass
 
     # print(Vector([[1.], [2.], [3.]]).shape)
     # print(Vector([[[1], [2.], [3.]]])) # not valid
@@ -194,16 +219,16 @@ if __name__ == '__main__':
 
     # v1 = Vector([[1.], [2.], [3.]])
 
-    v2 = Vector(3) # generate vector from value
-    print(v2.shape, v2.values)
+    # v2 = Vector(3) # generate vector from value
+    # print(v2.shape, v2.values)
 
-    v3 = Vector((0, 3)) # generate vector from range
-    print(v3.shape, v3.values)
+    # v3 = Vector((0, 3)) # generate vector from range
+    # print(v3.shape, v3.values)
 
-    print('column dot:', v2.dot(v3))
+    # print('column dot:', v2.dot(v3))
 
-    v4 = Vector([[0., 1., 2.]])
-    v5 = Vector([[0., 1., 2.]])
-    v6wrong = Vector([[1.], [2.], [3.]])
-    print('row dot:', v4.dot(v5))
-    print('row dot:', v4.dot(v6wrong))
+    # v4 = Vector([[0., 1., 2.]])
+    # v5 = Vector([[0., 1., 2.]])
+    # v6wrong = Vector([[1.], [2.], [3.]])
+    # print('row dot:', v4.dot(v5))
+    # print('row dot:', v4.dot(v6wrong))
