@@ -1,14 +1,18 @@
-class Evaluator:
-    @staticmethod
-    def zip_evaluate(coefs, words):
+def is_valid(coefs, words):
         if len(coefs) != len(words):
-            print(-1)
-            return -1
+            return False
 
         if not isinstance(coefs, list) \
         or not isinstance(words, list) \
         or not all(isinstance(el, float) for el in coefs) \
         or not all(isinstance(el, str) for el in words):
+            return False
+        return True
+
+class Evaluator:
+    @staticmethod
+    def zip_evaluate(coefs, words):
+        if not is_valid(coefs, words):
             print(-1)
             return -1
 
@@ -21,13 +25,7 @@ class Evaluator:
 
     @staticmethod
     def enumerate_evaluate(coefs, words):
-        if len(coefs) != len(words):
-            print(-1)
-            return -1
-        if not isinstance(coefs, list) \
-        or not isinstance(words, list) \
-        or not all(isinstance(el, float) for el in coefs) \
-        or not all(isinstance(el, str) for el in words):
+        if not is_valid(coefs, words):
             print(-1)
             return -1
 
