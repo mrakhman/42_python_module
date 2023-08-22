@@ -14,9 +14,11 @@ def _guard_(func):
 
 
 def ft_load(path: str) -> np.array:
+    '''Loads image and shows its format, shape and pixels content'''
     try:
         img = Image.open(path)
         arr_pixels = np.array(img)
+        print('Image format:', img.format)
         print('The shape of the image is:', np.shape(arr_pixels))
         print(arr_pixels)
         return None
