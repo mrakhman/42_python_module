@@ -28,7 +28,7 @@ def ft_load(path: str) -> np.array:
         print('Scale:', width / width, height / height)
         print()
         print(arr_pixels)
-        return None
+        return img
     except Exception as e:
         print('Error processing image')
         print(e)
@@ -37,7 +37,8 @@ def ft_load(path: str) -> np.array:
 @_guard_
 def main():
     '''Main for tests and error handling'''
-    ft_load("animal.jpeg")
+    # ft_load("animal.jpeg")
+    pass
 
 
 if __name__ == "__main__":

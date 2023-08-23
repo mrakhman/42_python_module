@@ -14,10 +14,11 @@ def _guard_(func):
     return wrapper
 
 
-def zoom(path: str) -> np.array:
+def zoom():
     '''Zooms image and displays it'''
     try:
-        img = Image.open(path)
+        img = ft_load("animal.jpeg")
+
         width, height = img.size
         left = 300
         top = 150
@@ -32,7 +33,8 @@ def zoom(path: str) -> np.array:
 
         arr_pixels = np.array(img_zoomed)
         new_width, new_height = img_zoomed.size
-        print('Image size. width:', new_width, 'height:', new_height)
+
+        print('\n________________________________________________\n')
         print('New shape after slicing:',
               np.shape(arr_pixels))
         print('Scale:', new_width / width, new_height / height)
@@ -47,9 +49,7 @@ def zoom(path: str) -> np.array:
 @_guard_
 def main():
     '''Main for tests and error handling'''
-    ft_load("animal.jpeg")
-    print('\n________________________________________________\n')
-    zoom("animal.jpeg")
+    zoom()
 
 
 if __name__ == "__main__":
