@@ -14,7 +14,7 @@ def _guard_(func):
 
 
 def ft_load(path: str) -> np.array:
-    '''Loads image, crops it, shows its title, format, size,
+    '''Loads image, crops it, shows its \
     shape (RGB channels), scale and array of pixels'''
     try:
         img = Image.open(path)

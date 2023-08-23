@@ -15,6 +15,7 @@ def _guard_(func):
 
 
 def rotate90(arr):
+    '''Rotates array 90 degrees clockwise'''
     N = len(arr)
 
     # Transpose of matrix (swap rows and columns)
