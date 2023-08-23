@@ -42,7 +42,7 @@ def rotate():
         img_pixels_rotate = rotate90(img_pixels)
         img_pixels_rotate = rotate90(img_pixels)
         img_pixels_rotate = rotate90(img_pixels)
-        img_rotate = Image.fromarray(img_pixels_rotate, 'L')
+        img_rotate = Image.fromarray(img_pixels_rotate)
 
         img_rotate.show()
 
