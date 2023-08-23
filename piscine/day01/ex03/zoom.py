@@ -24,9 +24,10 @@ def zoom(path: str) -> np.array:
         right = left + width / 2
         bottom = top + height / 2
         img_zoomed = img.crop((left, top, right, bottom))
-        newsize = (300, 300)
+        newsize = (400, 400)
         img_zoomed.thumbnail(newsize)  # thumbnail keep the initial dimentions
         img_zoomed = img_zoomed.convert('L')  # greyscale
+        img_zoomed = img_zoomed.crop((100, 0, 400, 300))  # to make square crop
         img_zoomed.show()
 
         arr_pixels = np.array(img_zoomed)
