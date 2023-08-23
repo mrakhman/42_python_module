@@ -1,4 +1,3 @@
-from PIL import Image
 import numpy as np
 from load_image import ft_load
 
