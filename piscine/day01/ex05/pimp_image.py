@@ -23,25 +23,35 @@ def ft_invert(pixels: np.ndarray) -> np.ndarray:
 
 def ft_red(pixels: np.ndarray) -> np.ndarray:
     '''Keeps only red pixels of RGB'''
-    # TODO: from here
-    new = np.zeros(pixels.shape)
-    new[::2] = pixels[::2]
-    return new
+    # multiply green and blue channels by 0
+    red = pixels.copy()
+    red[:, :, 1] *= 0
+    red[:, :, 2] *= 0
+    return red
 
 
 def ft_green(pixels: np.ndarray) -> np.ndarray:
     '''Keeps only green pixels of RGB'''
-    pass
+    # substract blue and red channels from pixels
+    green = pixels.copy()
+    green = green - ft_blue(pixels) - ft_red(pixels)
+    return green
 
 
 def ft_blue(pixels: np.ndarray) -> np.ndarray:
     '''Keeps only blue pixels of RGB'''
-    pass
+    # set red and green channels to 0
+    blue = pixels.copy()
+    blue[:, :, 0] = 0
+    blue[:, :, 1] = 0
+    return blue
 
 
 def ft_grey(pixels: np.ndarray) -> np.ndarray:
-    '''Makes pixels black and white (greyscale)'''
-    pass
+    '''Turns pixels from rgb to greyscale'''
+    # grey = 0.2989*red + 0.5870*green + 0.1140*blue
+    grey = np.dot(pixels[:, :, :3], [0.2989, 0.5870, 0.1140])
+    return grey
 
 
 def pimp_image():
@@ -51,14 +61,14 @@ def pimp_image():
         arr_pixels = np.array(img)
 
         # Original
-        # img.show()
+        img.show()
 
         # Invert
         print('\n________________________________________________\n')
         print(ft_invert.__doc__)
         invert_pixels = ft_invert(arr_pixels)
         img_invert = Image.fromarray(invert_pixels)
-        # img_invert.show()
+        img_invert.show()
 
         # Red
         print('\n________________________________________________\n')
@@ -67,9 +77,28 @@ def pimp_image():
         img_red = Image.fromarray(red_pixels)
         img_red.show()
 
-        # print('\n________________________________________________\n')
-        # print('New shape after Transpose:', np.shape(arr_pixels))
-        # print(arr_pixels)
+        # Green
+        print('\n________________________________________________\n')
+        print(ft_green.__doc__)
+        green_pixels = ft_green(arr_pixels)
+        img_green = Image.fromarray(green_pixels)
+        img_green.show()
+
+        # Blue
+        print('\n________________________________________________\n')
+        print(ft_blue.__doc__)
+        blue_pixels = ft_blue(arr_pixels)
+        img_blue = Image.fromarray(blue_pixels)
+        img_blue.show()
+
+        # Grey
+        print('\n________________________________________________\n')
+        print(ft_grey.__doc__)
+        grey_pixels = ft_grey(arr_pixels)
+        img_grey = Image.fromarray(grey_pixels)
+        img_grey.show()
+
+        print('\n________________________________________________\n')
         return None
     except Exception as e:
         print('Error processing image')
