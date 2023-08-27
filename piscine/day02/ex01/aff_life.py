@@ -17,30 +17,23 @@ def _guard_(func):
 def aff_life():
     '''Shows graphic of life expectancy in France'''
     df = load('../life_expectancy_years.csv')
-    # plt.plot(df.country, df['1800'])
-    # plt.show()
 
-    # print(df.loc[df.country == 'France'].T)
-    # new_df = df.loc[df.country == 'France']
-    # print(new_df[0])
-    # print(new_df.iloc[:[0]].values.flatten().tolist(),
-    #       new_df.iloc[:[1]].values.flatten().tolist())
-
-    print(df.loc[df.country == 'France'])
-
+    # Prepare data
     new_df = df.loc[df.country == 'France'].drop(columns=['country']).T
     new_df.columns = ['France']
-    new_df.index = new_df.index.astype(int)
-    plt.plot(new_df.France)
-    # print(new_df, new_df.France)
-    plt.show()
+    new_df.index = new_df.index.astype(int) # Change years column to type int for round up
 
-    # Seaborn load dataset
-    # years = sns.load_dataset(df)
-    # Create visualization
-    # sns.relplot(
-    #     data=df
-    # )
+    # Set graph title
+    _, ax = plt.subplots()
+    ax.set_title('France life expectancy projections')
+
+    #Set axis labels
+    plt.xlabel('Year')
+    plt.ylabel('Life expectancy')
+
+    # Plot and show
+    plt.plot(new_df.France)
+    plt.show()
 
 
 @_guard_
