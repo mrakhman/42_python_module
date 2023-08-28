@@ -18,10 +18,12 @@ def aff_life():
     '''Shows graphic of life expectancy in France'''
     df = load('../life_expectancy_years.csv')
 
+    # Matplotlib
     # Prepare data
     new_df = df.loc[df.country == 'France'].drop(columns=['country']).T
     new_df.columns = ['France']
     new_df.index = new_df.index.astype(int) # Change years column to type int for round up
+    new_df.index.name='Index1'
 
     # Set graph title
     _, ax = plt.subplots()
@@ -34,6 +36,11 @@ def aff_life():
     # Plot and show
     plt.plot(new_df.France)
     plt.show()
+
+    # Seaborn
+    sns.lineplot(y='France', x='Index1', data=new_df)
+    plt.show()
+
 
 
 @_guard_
