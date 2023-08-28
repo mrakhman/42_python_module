@@ -23,7 +23,7 @@ def normalize_value(val):
     return int(float(val))
 
 
-def aff_life():
+def aff_pop():
     '''Display 2 graphics of population: in France and another country'''
     df = load('../population_total.csv')
     country2 = 'Belgium'
@@ -64,7 +64,7 @@ def aff_life():
 @_guard_
 def main():
     '''Main for tests and error handling'''
-    aff_life()
+    aff_pop()
 
 
 if __name__ == "__main__":
