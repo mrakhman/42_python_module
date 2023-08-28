@@ -61,7 +61,7 @@ def aff_life():
     plt.show()
 
 
-# @_guard_
+@_guard_
 def main():
     '''Main for tests and error handling'''
     aff_life()
