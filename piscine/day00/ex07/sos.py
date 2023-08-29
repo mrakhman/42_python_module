@@ -53,6 +53,7 @@ def _guard_(func):
 
 
 def morse_code(str):
+    '''Transforms given alphanumeric string to morse code'''
     res_str = ''
     for el in str:
         if el not in NESTED_MORSE:
