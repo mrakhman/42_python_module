@@ -2,6 +2,7 @@ import sys
 
 
 def whatis():
+    '''Says if number is even, odd or zero'''
     args_len = len(sys.argv)
 
     if args_len < 2:
