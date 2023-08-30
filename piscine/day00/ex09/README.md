@@ -19,6 +19,7 @@ https://test.pypi.org/account/register/
 `pip install ./dist/ft_package_mrakhman-0.0.1.tar.gz`
 `pip install ./dist/ft_package_mrakhman-0.0.1-py3-none-any.whl`
 
-## Check 
+## Check
+Created package: https://test.pypi.org/project/ft-package-mrakhman/0.0.1/ 
 `pip list`
 `pip show -v ft_package_mrakhman`
