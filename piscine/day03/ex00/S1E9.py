@@ -34,7 +34,7 @@ class Character(ABC):
 and changes the health state of the character'''
     @abstractmethod
     def __init__(self, first_name, is_alive=True):
-        '''Init function to create character'''
+        '''Create Character with first_name and is_alive'''
         if is_valid_name(first_name) and is_valid_is_alive(is_alive):
             self.first_name = first_name
             self.is_alive = is_alive
@@ -43,7 +43,7 @@ and changes the health state of the character'''
 
     @abstractmethod
     def die(self):
-        '''Method that kills a character by setting is_alive to false'''
+        '''Kills a character by setting is_alive to false'''
         self.is_alive = False
 
 
@@ -51,18 +51,17 @@ class Stark(Character):
     '''Inherits from Character. \
 Class representing the Stark family'''
     def __init__(self, first_name, is_alive=True):
-        '''Init function to create Stark family character'''
+        '''Creates Stark family character with first_name and is_alive'''
         super().__init__(first_name=first_name, is_alive=is_alive)
-        # TODO: figure out how to inherit abstract method
 
-
+    def die(self):
+        '''Method that kills a character by setting is_alive to false'''
+        super().die()
 
 
 @_guard_
 def main():
     '''Main for tests and error handling'''
-    # aaa = Character('aa', False)
-    # print(aaa)
     Ned = Stark("Ned")
     print(Ned.__dict__)
     print(Ned.is_alive)
@@ -74,6 +73,11 @@ def main():
     print("---")
     Lyanna = Stark("Lyanna", False)
     print(Lyanna.__dict__)
+
+    # Error case:
+    # print('\n---')
+    # hodor = Character("hodor")
+    # print(hodor.__dict__)
 
 
 if __name__ == "__main__":
