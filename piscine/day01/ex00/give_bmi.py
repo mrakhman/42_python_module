@@ -27,6 +27,12 @@ def give_bmi(height: list[int | float], weight: list[int | float]) \
             print("Error: all elements must be int or float")
             return
 
+    # input validation: all  values > 0
+    for el in height:
+        if el <= 0:
+            print('Error: height and weight cant be < 0')
+            return
+
     bmi = [weight[i] / height[i] ** 2 for i, _ in enumerate(weight)]
     return bmi
 
@@ -71,6 +77,10 @@ def main():
     height5 = [2.71, 1.15, 4.0]
     weight5 = [165.3, 38.4]
 
+    # wrong input: values <= 0
+    height6 = [-10, 0]
+    weight6 = [-165.3, 38.4]
+
     print('1. float, correct:')
     bmi1 = give_bmi(height1, weight1)
     print(bmi1, type(bmi1))
@@ -96,14 +106,19 @@ def main():
     print(bmi5, type(bmi5))
     print()
 
+    print('6. wrong input: values <= 0, error:')
+    bmi6 = give_bmi(height6, weight6)
+    print(bmi6, type(bmi6))
+    print()
+
     # Test apply_mpi:
-    print('6.', bmi1, apply_limit(bmi1, 26))
+    print('7.', bmi1, apply_limit(bmi1, 26))
     print()
-    print('7.', bmi2, apply_limit(bmi2, 40.1))
+    print('8.', bmi2, apply_limit(bmi2, 40.1))
     print()
-    print('8.', [41.25, 38.0], apply_limit([41.25, 'aaa'], 40))
+    print('9.', [41.25, 38.0], apply_limit([41.25, 'aaa'], 40))
     print()
-    print('9.', [41.25, 38.0], apply_limit([41.25, 38], '40'))
+    print('10.', [41.25, 38.0], apply_limit([41.25, 38], '40'))
 
 
 if __name__ == "__main__":
