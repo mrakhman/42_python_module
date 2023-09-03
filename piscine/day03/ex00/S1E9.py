@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-# Input validation
 def is_valid_name(name):
     '''Input validation for first_name'''
     if not isinstance(name, str) or name == "":
@@ -50,6 +49,7 @@ and changes the health state of the character'''
 class Stark(Character):
     '''Inherits from Character. \
 Class representing the Stark family'''
+
     def __init__(self, first_name, is_alive=True):
         '''Creates Stark family character with first_name and is_alive'''
         super().__init__(first_name=first_name, is_alive=is_alive)
