@@ -17,6 +17,22 @@ def is_valid_is_alive(is_alive):
     return True
 
 
+def is_valid_hair(hair):
+    '''Input validation for hair'''
+    if not isinstance(hair, str):
+        print("Error: hair must be a string")
+        return False
+    return True
+
+
+def is_valid_eyes(eyes):
+    '''Input validation for eyes'''
+    if not isinstance(eyes, str):
+        print("Error: eyes must be a string")
+        return False
+    return True
+
+
 def _guard_(func):
     '''Prevents throwing error in console'''
     def wrapper(*args, **kwargs):
@@ -33,10 +49,14 @@ class Baratheon(Character):
 
     def __init__(self, first_name, is_alive=True, eyes='brown', hair='dark'):
         '''Creates Baratheon family character with first_name and is_alive'''
-        super().__init__(first_name=first_name, is_alive=is_alive)
-        self.family_name = 'Baratheon'
-        self.eyes = eyes
-        self.hair = hair
+        if is_valid_name(first_name) and is_valid_is_alive(is_alive) \
+                and is_valid_hair(hair) and is_valid_eyes(eyes):
+            super().__init__(first_name=first_name, is_alive=is_alive)
+            self.family_name = 'Baratheon'
+            self.eyes = eyes
+            self.hair = hair
+        else:
+            return
 
     def die(self):
         '''Method that kills a character by setting is_alive to false'''
@@ -65,10 +85,14 @@ class Lannister(Character):
 
     def __init__(self, first_name, is_alive=True, eyes='blue', hair='light'):
         '''Creates Baratheon family character with first_name and is_alive'''
-        super().__init__(first_name=first_name, is_alive=is_alive)
-        self.family_name = 'Lannister'
-        self.eyes = eyes
-        self.hair = hair
+        if is_valid_name(first_name) and is_valid_is_alive(is_alive) \
+                and is_valid_hair(hair) and is_valid_eyes(eyes):
+            super().__init__(first_name=first_name, is_alive=is_alive)
+            self.family_name = 'Baratheon'
+            self.eyes = eyes
+            self.hair = hair
+        else:
+            return
 
     def die(self):
         '''Method that kills a character by setting is_alive to false'''
