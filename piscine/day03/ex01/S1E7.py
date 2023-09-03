@@ -1,6 +1,6 @@
 from S1E9 import Character
 
-# Input validation
+
 def is_valid_name(name):
     '''Input validation for first_name'''
     if not isinstance(name, str) or name == "":
@@ -30,6 +30,7 @@ def _guard_(func):
 
 class Baratheon(Character):
     '''Class representing Baratheon family'''
+
     def __init__(self, first_name, is_alive=True, eyes='brown', hair='dark'):
         '''Creates Baratheon family character with first_name and is_alive'''
         super().__init__(first_name=first_name, is_alive=is_alive)
@@ -48,31 +49,58 @@ class Baratheon(Character):
     def __str__(self):
         '''Returns a human-readable, or informal, \
 string representation of an object'''
-        txt = f'''First Name: {self.first_name}; Alive: {self.is_alive}'''
+        txt = f'''First Name: {self.first_name}; Alive: {self.is_alive}; \
+Family name: {self.family_name}; Eyes: {self.eyes}; Hair: {self.hair}'''
         return txt
 
     def __repr__(self):
         '''Returns a more information-rich, or official, \
 string representation of an object'''
-        txt = f'''Baratheon instance: {'{ '}first_name: {self.first_name}; \
-is_alive: {self.is_alive}{' }'}'''
+        txt = f"{vars(self)}"
         return txt
 
 
 class Lannister(Character):
-    pass
+    '''Class representing Lannister family'''
 
-    # decorator
-    def create_lannister(bzzzz):
-        pass
+    def __init__(self, first_name, is_alive=True, eyes='blue', hair='light'):
+        '''Creates Baratheon family character with first_name and is_alive'''
+        super().__init__(first_name=first_name, is_alive=is_alive)
+        self.family_name = 'Lannister'
+        self.eyes = eyes
+        self.hair = hair
+
+    def die(self):
+        '''Method that kills a character by setting is_alive to false'''
+        super().die()
+
+    def __str__(self):
+        '''Returns a human-readable, or informal, \
+string representation of an object'''
+        txt = f'''First Name: {self.first_name}; Alive: {self.is_alive}; \
+Family name: {self.family_name}; Eyes: {self.eyes}; Hair: {self.hair}'''
+        return txt
+
+    def __repr__(self):
+        '''Returns a more information-rich, or official, \
+string representation of an object'''
+        txt = f"{vars(self)}"
+        return txt
+
+    @classmethod
+    def create_lannister(
+            cls, first_name, is_alive=True, eyes='blue', hair='light'):
+        return cls(first_name, is_alive, eyes, hair)
 
 
 @_guard_
 def main():
     '''Main for tests and error handling'''
-    bb = Baratheon('Here')
-    print(str(bb))
-    print(repr(bb))
+    # Find a solution so that "__str__" and "__repr__"
+    # return strings and not objects
+    Bar = Baratheon('Bar')
+    print(str(Bar))
+    print(repr(Bar))
     print('\n-----------\n')
 
     Robert = Baratheon("Robert")
@@ -83,6 +111,17 @@ def main():
     Robert.die()
     print(Robert.is_alive)
     print(Robert.__doc__)
+
+    print("\n---\n")
+    Cersei = Lannister("Cersei")
+    print(Cersei.__dict__)
+    print(Cersei.__str__)
+    print(Cersei.is_alive)
+
+    print("\n---\n")
+    Jaine = Lannister.create_lannister("Jaine", True)
+    print(f"Name : {Jaine.first_name, type(Jaine).__name__}, \
+Alive : {Jaine.is_alive}")
 
 
 if __name__ == "__main__":
