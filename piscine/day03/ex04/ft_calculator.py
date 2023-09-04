@@ -12,8 +12,8 @@ def _guard_(func):
 class Calculator:
     '''Calculator class calculates (dot product, addition, substraction) \
 of two vectors of the same size'''
-    @classmethod
-    def dotproduct(cls, v1: list[float], v2: list[float]) -> None:
+    @staticmethod
+    def dotproduct(v1: list[float], v2: list[float]) -> None:
         '''Calculates dot product of two vectors'''
 
         def multiply_two_lists(v1, v2):
@@ -31,14 +31,14 @@ of two vectors of the same size'''
         res = list_sum(new_v)
         print('Dot product is:', res)
 
-    @classmethod
-    def add_vec(cls, v1: list[float], v2: list[float]) -> None:
+    @staticmethod
+    def add_vec(v1: list[float], v2: list[float]) -> None:
         '''Calculates sum of two vectors'''
         res = [v1[i] + v2[i] for i, _el in enumerate(v1)]
         print('Add Vector is:', res)
 
-    @classmethod
-    def sous_vec(cls, v1: list[float], v2: list[float]) -> None:
+    @staticmethod
+    def sous_vec(v1: list[float], v2: list[float]) -> None:
         '''Substracts one vector from another'''
         res = [v1[i] - v2[i] for i, _el in enumerate(v1)]
         print('Sous Vector is:', res)
