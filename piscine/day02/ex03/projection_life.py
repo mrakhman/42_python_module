@@ -25,6 +25,7 @@ def projection_life():
     new_life_expectancy = df_life_expectancy[['country', '1900']]
     new_df = pd.concat([new_life_expectancy, df_gdp['1900']], axis=1)
     new_df.columns = ['country', 'life_expectancy', 'gdp']
+    new_df = new_df.dropna()
 
     # Set graph title
     _, ax = plt.subplots()
