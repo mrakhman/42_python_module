@@ -13,6 +13,9 @@ def _guard_(func):
     return wrapper
 
 
+# TODO: error handling, input validation
+
+
 def ft_statistics(*args: object, **kwargs: object) -> None:
     # print(args)
     # print(kwargs)
@@ -61,6 +64,19 @@ def ft_statistics(*args: object, **kwargs: object) -> None:
         return [Q1, Q3]
         # return Q1
 
+    def var(values):
+        mean_value = mean(values)
+
+        squared_difference = [(el - mean_value) ** 2 for el in values]
+        variance = sum(squared_difference) / len(squared_difference)
+        return variance
+        
+
+    def std(values):
+        variance = var(values)
+        stdandard_deviation = variance ** (1/2)
+        return stdandard_deviation
+
 
     # if 'mean' in kwargs.values():
     #     print('mean:', mean(args))
@@ -70,6 +86,12 @@ def ft_statistics(*args: object, **kwargs: object) -> None:
 
     if 'quartile' in kwargs.values():
         print('quartile:', quartile(args))
+
+    # if 'std' in kwargs.values():
+    #     print('std:', std(args))
+
+    # if 'var' in kwargs.values():
+    #     print('var:', var(args))
 
 
 # @_guard_
@@ -86,15 +108,29 @@ def main():
     # print('25 quartile numpy', np.percentile(np.array([1, 42, 360, 11, 64]), 25))
     # print('75 quartile numpy', np.percentile(np.array([1, 42, 360, 11, 64]), 75))
 
+    # Percintiles aaaaa
     arr1 = [1, 2, 3, 4, 5, 6, 7]
     arr2 = [1, 2, 3, 4, 5, 6]
-    ft_statistics(*arr1, toto="mean", tutu="median", tata="quartile")
-    ft_statistics(*arr2, toto="mean", tutu="median", tata="quartile")
+    arr3 = [1, 42, 360, 11, 64]
+    arr3 = [1, 11, 42, 64, 360]
+    ft_statistics(*arr1, toto="mean", tutu="median", tata="quartile") # Q2 = 4;   Q1 = 2; Q3 = 6
+    ft_statistics(*arr2, toto="mean", tutu="median", tata="quartile") # Q2 = 3,5; Q1 = 2; Q3 = 5
     print()
 
-    print('25 + 75 quartile numpy', np.percentile(np.array(arr1), 25), np.percentile(np.array(arr1), 75))
-    print('25 + 75 quartile numpy', np.percentile(np.array(arr2), 25), np.percentile(np.array(arr2), 75))
+    method = 'inverted_cdf'
+    print('25 + 75 quartile numpy', np.percentile(np.array(arr1), 25, method=method), np.percentile(np.array(arr1), 75, method=method))
+    print('25 + 75 quartile numpy', np.percentile(np.array(arr2), 25, method=method), np.percentile(np.array(arr2), 75, method=method))
 
+    print('25 + 75 quartile numpy', np.percentile(np.array(arr3), 25, method=method), np.percentile(np.array(arr3), 75, method=method))
+
+    # Stdandatd deviation:
+    # arr1 = [1, 2, 3, 4, 5, 6, 7]
+    # arr2 = [1, 2, 3, 4, 5, 6]
+    # ft_statistics(*arr1, toto="mean", tutu="median", tata="quartile", tete="std", titi="var")
+    # ft_statistics(*arr2, toto="mean", tutu="median", tata="quartile", tete="std", titi="var")
+    # print()
+    # print(np.std(arr1), np.var(arr1))
+    # print(np.std(arr2), np.var(arr2))
 
 if __name__ == "__main__":
     main()
