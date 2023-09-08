@@ -24,6 +24,11 @@ def _guard_(func):
 #                 return function(*args, **kwds)
 #             print(f'Error: {function} call too many times')
 #         return limit_function
+
+#     if not isinstance(limit, int):
+#         print('Error: limit must be an int')
+#         return
+
 #     return callLimiter
 
 
@@ -46,6 +51,10 @@ def callLimit(limit: int):
         '''Function that calls limit_function method of Inner class'''
         lets_go = Inner(limit, function)
         return lets_go.limit_function
+
+    if not isinstance(limit, int):
+        print('Error: limit must be an int')
+        return
 
     return callLimiter
 
